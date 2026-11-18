@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#681b2b" />
+  <title>Wedding Invitation | A Celebration of Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon: #681b2b;
+      --deep: #3d101b;
+      --saffron: #c87525;
+      --gold: #bd9148;
+      --cream: #fff8ed;
+      --paper: #fffdf8;
+      --ink: #39272a;
+      --muted: #806d68;
+      --line: #ead9c2;
+      --shadow: 0 16px 45px rgba(76, 31, 35, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--cream);
+      font-family: "DM Sans", sans-serif; line-height: 1.65;
+    }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; display: flex; justify-content: center;
+      background: rgba(255,248,237,.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      width: min(1120px, 100%); padding: 12px 22px; display: flex;
+      align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { color: var(--maroon); font-family: "Playfair Display", serif; font-weight: 700; }
+    .navlinks { display: flex; gap: 18px; flex-wrap: wrap; font-size: .88rem; }
+    .navlinks a { text-decoration: none; color: var(--muted); }
+    .navlinks a:hover { color: var(--maroon); }
+    .hero {
+      min-height: 680px; display: grid; place-items: center; text-align: center;
+      padding: 78px 20px; color: #fff9ed; position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(232,183,99,.25), transparent 42%),
+        linear-gradient(145deg, #3d101b, #741f32 55%, #4b1424);
+    }
+    .hero:before, .hero:after {
+      content: "✦  ❋  ✦  ❋  ✦"; position: absolute; color: rgba(239,202,133,.25);
+      font-size: 2rem; letter-spacing: 1rem; writing-mode: vertical-rl;
+    }
+    .hero:before { left: 3%; top: 15%; }
+    .hero:after { right: 3%; bottom: 15%; }
+    .hero-inner { max-width: 760px; position: relative; z-index: 1; }
+    .ganesh { color: #f1cc87; font-size: 2.6rem; margin-bottom: 12px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .24em; font-size: .76rem; color: #efd29a; }
+    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; font-weight: 600; }
+    .hero h1 { font-size: clamp(2.7rem, 8vw, 5.7rem); line-height: 1.08; margin: 22px 0; }
+    .amp { color: #e6bd70; font-style: italic; }
+    .hero p { color: #f4e5cf; }
+    .hero-date { margin: 28px auto 0; padding: 12px 24px; border-top: 1px solid #bd9148; border-bottom: 1px solid #bd9148; display: inline-block; letter-spacing: .12em; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--gold); color: #2f1720; border: 0; border-radius: 999px;
+      padding: 12px 22px; font: 700 .92rem "DM Sans", sans-serif; text-decoration: none;
+      cursor: pointer; transition: transform .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); background: #d4ad69; }
+    .button.outline { background: transparent; color: var(--maroon); border: 1px solid var(--gold); }
+    .hero .button { margin-top: 28px; }
+    .section { padding: 78px 20px; }
+    .section.alt { background: var(--paper); }
+    .container { width: min(1050px, 100%); margin: auto; }
+    .section-head { text-align: center; max-width: 650px; margin: 0 auto 38px; }
+    .section-head .eyebrow { color: var(--saffron); }
+    .section-head h2 { color: var(--maroon); font-size: clamp(2rem, 5vw, 3rem); margin: 8px 0 12px; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .intro-card {
+      max-width: 790px; margin: auto; padding: 38px; text-align: center;
+      border: 1px solid var(--line); background: var(--paper); border-radius: 18px; box-shadow: var(--shadow);
+    }
+    .intro-card p { margin: 8px 0; }
+    .ornament { color: var(--gold); font-size: 1.5rem; letter-spacing: .4em; }
+    .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 650px; margin: auto; }
+    .timebox { background: var(--maroon); color: #fff8ed; text-align: center; padding: 22px 8px; border-radius: 14px; box-shadow: var(--shadow); }
+    .timebox strong { display: block; font: 700 clamp(1.8rem, 5vw, 2.7rem) "Playfair Display", serif; color: #f0cc8b; }
+    .timebox span { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+    .events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .event {
+      padding: 26px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper);
+      text-align: center; box-shadow: 0 8px 24px rgba(76,31,35,.05);
+    }
+    .event .symbol { font-size: 2rem; }
+    .event h3 { color: var(--maroon); font-size: 1.55rem; margin: 8px 0; }
+    .event p { color: var(--muted); margin: 4px 0; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .gallery img {
+      width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px;
+      background: #f1e4d2; border: 1px solid var(--line); cursor: zoom-in;
+    }
+    .photo-note { text-align: center; color: var(--muted); font-size: .86rem; margin-top: 14px; }
+    .venue-card {
+      display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: var(--shadow);
+    }
+    .venue-copy { padding: 36px; }
+    .venue-copy h3 { color: var(--maroon); font-size: 1.8rem; margin: 6px 0 12px; }
+    .map-frame { width: 100%; min-height: 300px; border: 0; background: #eadfce; }
+    .rsvp-wrap { max-width: 680px; margin: auto; background: var(--paper); padding: 34px; border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    form { display: grid; gap: 14px; }
+    label { font-size: .9rem; font-weight: 700; color: var(--maroon); }
+    input, select, textarea {
+      width: 100%; margin-top: 6px; padding: 12px 13px; border: 1px solid #dcc9b1;
+      border-radius: 10px; background: #fffefa; color: var(--ink); font: inherit;
+    }
+    input:focus, select:focus, textarea:focus { outline: 2px solid #d9bd88; border-color: var(--gold); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .small { color: var(--muted); font-size: .83rem; }
+    .share-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    footer { text-align: center; padding: 30px 20px; background: var(--deep); color: #f4e5cf; }
+    footer strong { color: #efc77f; font-family: "Playfair Display", serif; }
+    .toast { display:none; margin-top: 12px; padding: 10px; border-radius: 9px; background: #edf5e9; color: #315d32; }
+    @media (max-width: 720px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .navlinks { gap: 12px; font-size: .8rem; }
+      .hero { min-height: 590px; }
+      .events { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .venue-card { grid-template-columns: 1fr; }
+      .map-frame { min-height: 260px; }
+      .intro-card, .rsvp-wrap { padding: 24px 18px; }
+    }
+    @media (max-width: 390px) {
+      .countdown { gap: 7px; }
+      .timebox { padding: 16px 4px; }
+      .timebox span { font-size: .65rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- EDIT THE DETAILS IN THE CONFIG SECTION AT THE BOTTOM OF THIS FILE. -->
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand" id="navNames">A & B · Wedding</div>
+      <div class="navlinks">
+        <a href="#story">Invitation</a><a href="#countdown">Countdown</a>
+        <a href="#events">Functions</a><a href="#gallery">Gallery</a><a href="#venue">Venue</a><a href="#rsvp">RSVP</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="ganesh">॥ श्री गणेशाय नमः ॥</div>
+        <div class="eyebrow">Together with our families</div>
+        <p>We joyfully invite you to celebrate the wedding of</p>
+        <h1><span id="brideName">Bride's Name</span><br><span class="amp">&</span><br><span id="groomName">Groom's Name</span></h1>
+        <div class="hero-date" id="heroDate">WEDDING DATE · TIME</div>
+        <p>Two hearts, one beautiful journey. Your presence will make our celebration complete.</p>
+        <a class="button" href="#rsvp">Kindly respond</a>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">With blessings and love</div>
+          <h2 मंगल परिणय</h2>
+          <p>A new beginning, made more beautiful with your blessings.</p>
+        </div>
+        <div class="intro-card">
+          <div class="ornament">❋ ✦ ❋</div>
+          <p>With the blessings of our elders and the love of our family and friends,</p>
+          <p>we request the honour of your presence as we begin our journey together.</p>
+          <h3 style="color:var(--maroon);font-size:1.7rem;margin:18px 0 4px" id="coupleLine">Bride's Name & Groom's Name</h3>
+          <p id="familyLine" class="small">Along with our families</p>
+          <div class="ornament">❋ ✦ ❋</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="countdown">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">The celebration begins in</div>
+          <h2>Counting the moments</h2>
+          <p>We can't wait to celebrate with you!</p>
+        </div>
+        <div class="countdown">
+          <div class="timebox"><strong id="days">00</strong><span>Days</span></div>
+          <div class="timebox"><strong id="hours">00</strong><span>Hours</span></div>
+          <div class="timebox"><strong id="minutes">00</strong><span>Minutes</span></div>
+          <div class="timebox"><strong id="seconds">00</strong><span>Seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="events">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Rituals · laughter · togetherness</div>
+          <h2>Wedding celebrations</h2>
+          <p>Join us for the special moments leading up to our big day.</p>
+        </div>
+        <div class="events" id="eventCards">
+          <article class="event"><div class="symbol">🌼</div><h3>Haldi</h3><p>Add your function date and time</p><p>Add venue</p></article>
+          <article class="event"><div class="symbol">🌿</div><h3>Mehendi</h3><p>Add your function date and time</p><p>Add venue</p></article>
+          <article class="event"><div class="symbol">💍</div><h3>Wedding</h3><p>Add your wedding date and time</p><p>Add venue</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Our favourite moments</div>
+          <h2>Photo gallery</h2>
+          <p>A little glimpse into our story.</p>
+        </div>
+        <div class="gallery" id="photoGallery">
+          <img src="assets/photo1.jpg" alt="Couple photo 1" onerror="this.style.display='none'">
+          <img src="assets/photo2.jpg" alt="Couple photo 2" onerror="this.style.display='none'">
+          <img src="assets/photo3.jpg" alt="Couple photo 3" onerror="this.style.display='none'">
+        </div>
+        <p class="photo-note">Add your pictures as photo1.jpg, photo2.jpg and photo3.jpg inside the assets folder.</p>
+      </div>
+    </section>
+
+    <section class="section" id="venue">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">We would love to see you there</div>
+          <h2>Where to celebrate</h2>
+        </div>
+        <div class="venue-card">
+          <div class="venue-copy">
+            <div class="eyebrow">Wedding venue</div>
+            <h3 id="venueName">Venue name</h3>
+            <p id="venueAddress">Add your complete venue address here.</p>
+            <p><strong id="venueDate">Wedding date and time</strong></p>
+            <a class="button" id="mapLink" href="#" target="_blank" rel="noopener">Get directions ↗</a>
+          </div>
+          <iframe class="map-frame" id="mapFrame" title="Wedding venue map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="rsvp">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Kindly respond</div>
+          <h2>Will you join us?</h2>
+          <p>Your reply will help us plan the celebration.</p>
+        </div>
+        <div class="rsvp-wrap">
+          <form id="rsvpForm">
+            <label>Your name
+              <input id="guestName" type="text" placeholder="Enter your name" required>
+            </label>
+            <div class="form-row">
+              <label>Will you attend?
+                <select id="attendance" required>
+                  <option value="Yes, I will attend">Joyfully accepts</option>
+                  <option value="Sorry, I cannot attend">Regretfully declines</option>
+                </select>
+              </label>
+              <label>Number of guests
+                <select id="guestCount">
+                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+                </select>
+              </label>
+            </div>
+            <label>Message (optional)
+              <textarea id="guestMessage" rows="3" placeholder="Send your wishes..."></textarea>
+            </label>
+            <button class="button" type="submit">Send RSVP on WhatsApp</button>
+            <div class="toast" id="formToast">Your WhatsApp message is ready. Please press Send in WhatsApp to confirm.</div>
+            <p class="small">RSVP opens WhatsApp with your response. The guest must press Send to submit it.</p>
+          </form>
+        </div>
+        <div class="share-row">
+          <button class="button outline" id="shareButton" type="button">Share invitation ↗</button>
+          <button class="button outline" id="copyButton" type="button">Copy website link</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="ornament">✦ ❋ ✦</div>
+    <p>With love and blessings,</p>
+    <strong id="footerNames">Bride's Name & Groom's Name</strong>
+    <p>We look forward to celebrating with you!</p>
+  </footer>
+
+  <script>
+    // ===================== EDIT YOUR WEDDING DETAILS HERE =====================
+    const WEDDING = {
+      bride: "Bride's Name",
+      groom: "Groom's Name",
+      date: "2027-02-14T10:00:00", // Format: YYYY-MM-DDTHH:MM (24-hour time)
+      dateText: "14 February 2027 · 10:00 AM",
+      venue: "Your Wedding Venue",
+      address: "Your complete address, City, Maharashtra",
+      mapSearch: "Your Wedding Venue, City, Maharashtra",
+      whatsappNumber: "91XXXXXXXXXX", // Country code + number, no +, spaces or dashes
+      events: [
+        { icon: "🌼", title: "Haldi", date: "Add date and time", place: "Add venue" },
+        { icon: "🌿", title: "Mehendi", date: "Add date and time", place: "Add venue" },
+        { icon: "💍", title: "Wedding", date: "14 February 2027 · 10:00 AM", place: "Your Wedding Venue" }
+      ]
+    };
+    // =================== END OF WEDDING DETAILS ===================
+
+    const byId = id => document.getElementById(id);
+    const couple = `${WEDDING.bride} & ${WEDDING.groom}`;
+    byId("navNames").textContent = `${WEDDING.bride} & ${WEDDING.groom}`;
+    byId("brideName").textContent = WEDDING.bride;
+    byId("groomName").textContent = WEDDING.groom;
+    byId("coupleLine").textContent = couple;
+    byId("footerNames").textContent = couple;
+    byId("heroDate").textContent = WEDDING.dateText;
+    byId("venueName").textContent = WEDDING.venue;
+    byId("venueAddress").textContent = WEDDING.address;
+    byId("venueDate").textContent = WEDDING.dateText;
+
+    const mapQuery = encodeURIComponent(WEDDING.mapSearch);
+    byId("mapLink").href = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+    byId("mapFrame").src = `https://maps.google.com/maps?q=${mapQuery}&output=embed`;
+
+    byId("eventCards").innerHTML = WEDDING.events.map(e => `
+      <article class="event">
+        <div class="symbol">${e.icon}</div><h3>${e.title}</h3>
+        <p>${e.date}</p><p>${e.place}</p>
+      </article>`).join("");
+
+    const target = new Date(WEDDING.date).getTime();
+    function updateCountdown() {
+      const distance = target - Date.now();
+      if (Number.isNaN(target)) return;
+      if (distance <= 0) {
+        ["days","hours","minutes","seconds"].forEach(id => byId(id).textContent = "00");
+        return;
+      }
+      byId("days").textContent = Math.floor(distance / 86400000);
+      byId("hours").textContent = Math.floor((distance % 86400000) / 3600000);
+      byId("minutes").textContent = Math.floor((distance % 3600000) / 60000);
+      byId("seconds").textContent = Math.floor((distance % 60000) / 1000);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    byId("rsvpForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const name = byId("guestName").value.trim();
+      if (!name) return;
+      if (!/^91\d{10}$/.test(WEDDING.whatsappNumber)) {
+        alert("Please add your 10-digit WhatsApp number with India's country code in the WEDDING settings.");
+        return;
+      }
+      const message = [
+        `Wedding RSVP for ${couple}`,
+        `Name: ${name}`,
+        `Attendance: ${byId("attendance").value}`,
+        `Number of guests: ${byId("guestCount").value}`,
+        `Message: ${byId("guestMessage").value.trim() || "None"}`
+      ].join("\n");
+      byId("formToast").style.display = "block";
+      window.open(`https://wa.me/${WEDDING.whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+    });
+
+    byId("shareButton").addEventListener("click", async () => {
+      const shareData = { title: `Wedding of ${couple}`, text: `You are invited to celebrate with us! ${WEDDING.dateText}`, url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch (e) {}
+      } else {
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareData.text + " " + shareData.url)}`, "_blank");
+      }
+    });
+    byId("copyButton").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        byId("copyButton").textContent = "Link copied ✓";
+      } catch (e) {
+        alert("Copy this website address from your browser's address bar.");
+      }
+    });
+  </script>
+</body>
+</html>
